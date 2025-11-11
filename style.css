@@ -1,0 +1,64 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars */
+}
+canvas {
+  display: block;
+}
+
+/* Style for p5.js buttons */
+button {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #45a049;
+}
+
+/* 確保所有標題為區塊元素並有下方間距，避免重疊 */
+h1,h2,h3,h4,h5,h6 {
+  display: block;
+  margin: 0 0 12px;
+}
+
+/* 移除常見展開內容的絕對定位，改為流式佔位 */
+.accordion .content,
+.collapsible .content,
+.panel,
+.dropdown-content,
+.expanded .content {
+  position: static !important;
+  overflow: visible !important;
+  max-height: none !important;
+}
+
+/* 如果需要平滑展開動畫，使用 max-height 過渡（可由 JS 設定精確高度）*/
+.accordion .content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 280ms ease;
+}
+.accordion .item.expanded .content {
+  max-height: 1000px; /* 或用 JS 設定為內容的 scrollHeight */
+}
+
+/* 若頁面有固定（fixed）或黏性（sticky） header，確保下面內容有足夠間距 */
+header.fixed, .site-header.fixed {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+main, .container, .page-content {
+  padding-top: 0; /* 如需避免被 header 覆蓋，可調整數值 */
+}
+
+/* 若專案中某些元素仍然用 position:absolute 導致重疊，找出並改為 static/relative */

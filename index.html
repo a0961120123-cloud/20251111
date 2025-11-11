@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!-- Prevent registration of deviceorientation/devicemotion listeners (suppress Permissions-Policy warnings) -->
+    <script>
+      (function() {
+        const originalAdd = EventTarget.prototype.addEventListener;
+        EventTarget.prototype.addEventListener = function(type, listener, options) {
+          if (type === 'deviceorientation' || type === 'devicemotion' || type === 'compassneedscalibration') {
+            // ignore sensor listener registrations
+            return;
+          }
+          return originalAdd.call(this, type, listener, options);
+        };
+      })();
+    </script>
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+  </head>
+  
+  <body>
+    <script src="sketch.js"></script>
+  </body>
+</html>
